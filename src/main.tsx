@@ -5,8 +5,8 @@ import { PrimeReactProvider } from "primereact/api";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
 import "./assets/index.scss";
-import DefaultLayout from "./layout/MainLayout";
-import Home from "./pages/home/Home";
+import MainLayout from "./layout/MainLayout";
+import HomePage from "./pages/home/Home";
 import NotFoundPage from "./pages/NotFoundPage";
 
 const loading = (
@@ -20,13 +20,14 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <Provider store={store}>
       <PrimeReactProvider>
         <BrowserRouter>
-          <Suspense fallback={loading}>
-            <Routes>
-              <Route path="/home" element={<Home />} />
-              <Route path="/404" element={<NotFoundPage />} />
-              <Route path="*" element={<DefaultLayout />} />
-            </Routes>
-          </Suspense>
+          <MainLayout>
+            <Suspense fallback={loading}>
+              <Routes>
+                <Route path="/home" element={<HomePage />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </Suspense>
+          </MainLayout>
         </BrowserRouter>
       </PrimeReactProvider>
     </Provider>

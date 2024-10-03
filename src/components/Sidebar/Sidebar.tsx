@@ -1,36 +1,27 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { Sidebar } from "primereact/sidebar";
-import { useState } from "react";
-import { Button } from "primereact/button";
 
-const AppSidebar: React.FC = () => {
-  const [visible, setVisible] = useState(false);
+interface AppSidebarProps {
+  visible: boolean;
+  setVisible: Dispatch<SetStateAction<boolean>>;
+  appendTo?: HTMLElement;
+}
 
+const AppSidebar: React.FC<AppSidebarProps> = ({
+  visible,
+  setVisible,
+  appendTo,
+}) => {
   return (
-    <div className="App">
-      <Button
-        icon="pi pi-angle-double-right w-6"
-        rounded
-        text
-        onClick={() => setVisible(true)}
-        className="p-mr-2"
-      />
+    <div className="relative top-20">
       <Sidebar
+        className="border-round-left-xl fadeinright"
         visible={visible}
         onHide={() => setVisible(false)}
-        className="border-round-right-xl fadeinleft"
+        position="right"
+        appendTo={appendTo}
       >
-        <h1 style={{ fontWeight: "normal" }}>Users Information Here</h1>
-        <Button
-          className="p-button-text"
-          icon="pi pi-check"
-          onClick={() => alert("Button 1 clicked")}
-        />
-        <Button
-          className="p-button-text"
-          icon="pi pi-times"
-          onClick={() => alert("Button 2 clicked")}
-        />
+        <h2 style={{ fontWeight: "normal" }}>Users Information Here</h2>
       </Sidebar>
     </div>
   );
