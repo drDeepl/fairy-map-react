@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store";
 import { ProgressSpinner } from "primereact/progressspinner";
 import { Button } from "primereact/button";
+import { setLoading } from "../store/appSlice";
 
 interface MainLayoutProps {
   children?: React.ReactNode;
@@ -13,7 +14,11 @@ interface MainLayoutProps {
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   const isLoad: boolean = useSelector((state: RootState) => state.app.isLoad);
   const [sidebarVisible, setVisible] = useState(false);
+  const dispatch = useDispatch();
 
+  const handleLoadBtn = () => {
+    dispatch(setLoading(!isLoad));
+  };
   return (
     <div>
       <Topbar onClickAvatar={() => setVisible(!sidebarVisible)} />
@@ -23,7 +28,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         appendTo={document.getElementById("topbar-mainlayout") as HTMLElement}
       />
       {isLoad ? <ProgressSpinner /> : null}
-      {/* TODO: Change state after click btn */}
+
+      <Button onClick={handleLoadBtn}>stop loading</Button>
       {children}
     </div>
   );
