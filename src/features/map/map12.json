@@ -90624,7 +90624,7 @@
           "type": "Polygon",
           "properties": {
             "id": "1",
-            "shapeName": "Алтайский край",
+            "name": "Алтайский край",
             "shapeISO": "RU-ALT",
             "shapeID": "28173009B19169349567218",
             "shapeGroup": "RUS",
@@ -90636,7 +90636,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "2",
-            "shapeName": "Республика Мордовия",
+            "name": "Республика Мордовия",
             "shapeISO": "RU-MO",
             "shapeID": "28173009B16834140201491",
             "shapeGroup": "RUS",
@@ -90648,7 +90648,7 @@
           "type": "Polygon",
           "properties": {
             "id": "3",
-            "shapeName": "Тульская область",
+            "name": "Тульская область",
             "shapeISO": "RU-TUL",
             "shapeID": "28173009B42082792489997",
             "shapeGroup": "RUS",
@@ -90660,7 +90660,7 @@
           "type": "Polygon",
           "properties": {
             "id": "4",
-            "shapeName": "Курганская область",
+            "name": "Курганская область",
             "shapeISO": "RU-KGN",
             "shapeID": "28173009B37154891354212",
             "shapeGroup": "RUS",
@@ -90672,7 +90672,7 @@
           "type": "Polygon",
           "properties": {
             "id": "5",
-            "shapeName": "Республика Ингушетия",
+            "name": "Республика Ингушетия",
             "shapeISO": "RU-IN",
             "shapeID": "28173009B75413689166101",
             "shapeGroup": "RUS",
@@ -90684,7 +90684,7 @@
           "type": "Polygon",
           "properties": {
             "id": "6",
-            "shapeName": "Ханты-Мансийский автономный округ - Югра",
+            "name": "Ханты-Мансийский автономный округ - Югра",
             "shapeISO": "RU-KHM",
             "shapeID": "28173009B19469770182148",
             "shapeGroup": "RUS",
@@ -90696,7 +90696,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "7",
-            "shapeName": "Кировская область",
+            "name": "Кировская область",
             "shapeISO": "RU-KIR",
             "shapeID": "28173009B31225333555943",
             "shapeGroup": "RUS",
@@ -90708,7 +90708,7 @@
           "type": "Polygon",
           "properties": {
             "id": "8",
-            "shapeName": "Республика Коми",
+            "name": "Республика Коми",
             "shapeISO": "RU-KO",
             "shapeID": "28173009B65584739970256",
             "shapeGroup": "RUS",
@@ -90720,7 +90720,7 @@
           "type": "Polygon",
           "properties": {
             "id": "9",
-            "shapeName": "Костромская область",
+            "name": "Костромская область",
             "shapeISO": "RU-KOS",
             "shapeID": "28173009B70678486994214",
             "shapeGroup": "RUS",
@@ -90964,7 +90964,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "10",
-            "shapeName": "Красноярский край",
+            "name": "Красноярский край",
             "shapeISO": "RU-KYA",
             "shapeID": "28173009B74437894515517",
             "shapeGroup": "RUS",
@@ -90976,7 +90976,7 @@
           "type": "Polygon",
           "properties": {
             "id": "11",
-            "shapeName": "Забайкальский край",
+            "name": "Забайкальский край",
             "shapeISO": "RU-ZAB",
             "shapeID": "28173009B29209288820923",
             "shapeGroup": "RUS",
@@ -90988,7 +90988,7 @@
           "type": "Polygon",
           "properties": {
             "id": "12",
-            "shapeName": "Свердловская область",
+            "name": "Свердловская область",
             "shapeISO": "RU-SVE",
             "shapeID": "28173009B4168149436518",
             "shapeGroup": "RUS",
@@ -91000,7 +91000,7 @@
           "type": "Polygon",
           "properties": {
             "id": "13",
-            "shapeName": "Волгоградская область",
+            "name": "Волгоградская область",
             "shapeISO": "RU-VGG",
             "shapeID": "28173009B90356867269748",
             "shapeGroup": "RUS",
@@ -91012,7 +91012,7 @@
           "type": "Polygon",
           "properties": {
             "id": "14",
-            "shapeName": "Иркутская область",
+            "name": "Иркутская область",
             "shapeISO": "RU-IRK",
             "shapeID": "28173009B46932664068393",
             "shapeGroup": "RUS",
@@ -91024,7 +91024,7 @@
           "type": "Polygon",
           "properties": {
             "id": "15",
-            "shapeName": "Пермский край",
+            "name": "Пермский край",
             "shapeISO": "RU-PER",
             "shapeID": "28173009B90469334921421",
             "shapeGroup": "RUS",
@@ -91036,7 +91036,7 @@
           "type": "Polygon",
           "properties": {
             "id": "16",
-            "shapeName": "Псковская область",
+            "name": "Псковская область",
             "shapeISO": "RU-PSK",
             "shapeID": "28173009B86476767341172",
             "shapeGroup": "RUS",
@@ -91126,7 +91126,7 @@
           "type": "Polygon",
           "properties": {
             "id": "17",
-            "shapeName": "Ростовская область",
+            "name": "Ростовская область",
             "shapeISO": "RU-ROS",
             "shapeID": "28173009B49971617762843",
             "shapeGroup": "RUS",
@@ -91141,7 +91141,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "18",
-            "shapeName": "Рязанская область",
+            "name": "Рязанская область",
             "shapeISO": "RU-RYA",
             "shapeID": "28173009B69714658607289",
             "shapeGroup": "RUS",
@@ -91153,7 +91153,7 @@
           "type": "Polygon",
           "properties": {
             "id": "19",
-            "shapeName": "Республика Адыгея",
+            "name": "Республика Адыгея",
             "shapeISO": "RU-AD",
             "shapeID": "28173009B41832925814017",
             "shapeGroup": "RUS",
@@ -91165,7 +91165,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "20",
-            "shapeName": "Самарская область",
+            "name": "Самарская область",
             "shapeISO": "RU-SAM",
             "shapeID": "28173009B25497318303482",
             "shapeGroup": "RUS",
@@ -91177,7 +91177,7 @@
           "type": "Polygon",
           "properties": {
             "id": "21",
-            "shapeName": "Республика Хакасия",
+            "name": "Республика Хакасия",
             "shapeISO": "RU-KK",
             "shapeID": "28173009B22688307284473",
             "shapeGroup": "RUS",
@@ -91189,7 +91189,7 @@
           "type": "Polygon",
           "properties": {
             "id": "22",
-            "shapeName": "Тамбовская область",
+            "name": "Тамбовская область",
             "shapeISO": "RU-TAM",
             "shapeID": "28173009B50284711669511",
             "shapeGroup": "RUS",
@@ -91214,7 +91214,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "23",
-            "shapeName": "Республика Татарстан",
+            "name": "Республика Татарстан",
             "shapeISO": "RU-TA",
             "shapeID": "28173009B46738131000378",
             "shapeGroup": "RUS",
@@ -91226,7 +91226,7 @@
           "type": "Polygon",
           "properties": {
             "id": "24",
-            "shapeName": "Томская область",
+            "name": "Томская область",
             "shapeISO": "RU-TOM",
             "shapeID": "28173009B26428150496728",
             "shapeGroup": "RUS",
@@ -91238,7 +91238,7 @@
           "type": "Polygon",
           "properties": {
             "id": "25",
-            "shapeName": "Нижегородская область",
+            "name": "Нижегородская область",
             "shapeISO": "RU-NIZ",
             "shapeID": "28173009B18259284234443",
             "shapeGroup": "RUS",
@@ -91339,7 +91339,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "26",
-            "shapeName": "Республика Карелия",
+            "name": "Республика Карелия",
             "shapeISO": "RU-KR",
             "shapeID": "28173009B76197938788712",
             "shapeGroup": "RUS",
@@ -91486,7 +91486,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "27",
-            "shapeName": "Архангельская область",
+            "name": "Архангельская область",
             "shapeISO": "RU-ARK",
             "shapeID": "28173009B41531818225413",
             "shapeGroup": "RUS",
@@ -91498,7 +91498,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "28",
-            "shapeName": "Астраханская область",
+            "name": "Астраханская область",
             "shapeISO": "RU-AST",
             "shapeID": "28173009B24199971408969",
             "shapeGroup": "RUS",
@@ -91538,7 +91538,7 @@
           "type": "Polygon",
           "properties": {
             "id": "29",
-            "shapeName": "Белгородская область",
+            "name": "Белгородская область",
             "shapeISO": "RU-BEL",
             "shapeID": "28173009B21416061393121",
             "shapeGroup": "RUS",
@@ -91550,7 +91550,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "30",
-            "shapeName": "Брянская область",
+            "name": "Брянская область",
             "shapeISO": "RU-BRY",
             "shapeID": "28173009B9124867987859",
             "shapeGroup": "RUS",
@@ -91562,7 +91562,7 @@
           "type": "Polygon",
           "properties": {
             "id": "31",
-            "shapeName": "Республика Бурятия",
+            "name": "Республика Бурятия",
             "shapeISO": "RU-BU",
             "shapeID": "28173009B12223462615068",
             "shapeGroup": "RUS",
@@ -91574,7 +91574,7 @@
           "type": "Polygon",
           "properties": {
             "id": "32",
-            "shapeName": "Чеченская республика",
+            "name": "Чеченская республика",
             "shapeISO": "RU-CE",
             "shapeID": "28173009B98838729156012",
             "shapeGroup": "RUS",
@@ -91586,7 +91586,7 @@
           "type": "Polygon",
           "properties": {
             "id": "33",
-            "shapeName": "Челябинская область",
+            "name": "Челябинская область",
             "shapeISO": "RU-CHE",
             "shapeID": "28173009B19466568926459",
             "shapeGroup": "RUS",
@@ -91604,7 +91604,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "34",
-            "shapeName": "Республика Чувашия",
+            "name": "Республика Чувашия",
             "shapeISO": "RU-CU",
             "shapeID": "28173009B91429860602147",
             "shapeGroup": "RUS",
@@ -91620,7 +91620,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "35",
-            "shapeName": "Тюменская область",
+            "name": "Тюменская область",
             "shapeISO": "RU-TYU",
             "shapeID": "28173009B79536515187316",
             "shapeGroup": "RUS",
@@ -91632,7 +91632,7 @@
           "type": "Polygon",
           "properties": {
             "id": "36",
-            "shapeName": "Республика Северная Осетия - Алания",
+            "name": "Республика Северная Осетия - Алания",
             "shapeISO": "RU-SE",
             "shapeID": "28173009B7235812138525",
             "shapeGroup": "RUS",
@@ -91644,7 +91644,7 @@
           "type": "Polygon",
           "properties": {
             "id": "37",
-            "shapeName": "Пензенская область",
+            "name": "Пензенская область",
             "shapeISO": "RU-PNZ",
             "shapeID": "28173009B59972517059449",
             "shapeGroup": "RUS",
@@ -91656,7 +91656,7 @@
           "type": "Polygon",
           "properties": {
             "id": "38",
-            "shapeName": "Амурская область",
+            "name": "Амурская область",
             "shapeISO": "RU-AMU",
             "shapeID": "28173009B24080199016459",
             "shapeGroup": "RUS",
@@ -91668,7 +91668,7 @@
           "type": "Polygon",
           "properties": {
             "id": "39",
-            "shapeName": "Кабардино-Балкарская республика",
+            "name": "Кабардино-Балкарская республика",
             "shapeISO": "RU-KB",
             "shapeID": "28173009B46612801043871",
             "shapeGroup": "RUS",
@@ -91680,7 +91680,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "40",
-            "shapeName": "Краснодарский край",
+            "name": "Краснодарский край",
             "shapeISO": "RU-KDA",
             "shapeID": "28173009B38978525633944",
             "shapeGroup": "RUS",
@@ -91692,7 +91692,7 @@
           "type": "Polygon",
           "properties": {
             "id": "41",
-            "shapeName": "Курская область",
+            "name": "Курская область",
             "shapeISO": "RU-KRS",
             "shapeID": "28173009B94971452660823",
             "shapeGroup": "RUS",
@@ -91727,7 +91727,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "42",
-            "shapeName": "Ленинградская область",
+            "name": "Ленинградская область",
             "shapeISO": "RU-LEN",
             "shapeID": "28173009B68464629065093",
             "shapeGroup": "RUS",
@@ -91739,7 +91739,7 @@
           "type": "Polygon",
           "properties": {
             "id": "43",
-            "shapeName": "Республика Марий Эл",
+            "name": "Республика Марий Эл",
             "shapeISO": "RU-ME",
             "shapeID": "28173009B61240048498251",
             "shapeGroup": "RUS",
@@ -91751,7 +91751,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "44",
-            "shapeName": "город Москва",
+            "name": "город Москва",
             "shapeISO": "RU-MOW",
             "shapeID": "28173009B19676032168465",
             "shapeGroup": "RUS",
@@ -91769,7 +91769,7 @@
           "type": "Polygon",
           "properties": {
             "id": "45",
-            "shapeName": "Московская область",
+            "name": "Московская область",
             "shapeISO": "RU-MOS",
             "shapeID": "28173009B74836580104791",
             "shapeGroup": "RUS",
@@ -91805,7 +91805,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "46",
-            "shapeName": "Мурманская область",
+            "name": "Мурманская область",
             "shapeISO": "RU-MUR",
             "shapeID": "28173009B23723882748638",
             "shapeGroup": "RUS",
@@ -91850,7 +91850,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "47",
-            "shapeName": "Ненецкий автономный округ",
+            "name": "Ненецкий автономный округ",
             "shapeISO": "RU-NEN",
             "shapeID": "28173009B11860669037731",
             "shapeGroup": "RUS",
@@ -91862,7 +91862,7 @@
           "type": "Polygon",
           "properties": {
             "id": "48",
-            "shapeName": "Новгородоская область",
+            "name": "Новгородоская область",
             "shapeISO": "RU-NGR",
             "shapeID": "28173009B16533507618293",
             "shapeGroup": "RUS",
@@ -91874,7 +91874,7 @@
           "type": "Polygon",
           "properties": {
             "id": "49",
-            "shapeName": "Новосибирская область",
+            "name": "Новосибирская область",
             "shapeISO": "RU-NVS",
             "shapeID": "28173009B96145222573980",
             "shapeGroup": "RUS",
@@ -91891,7 +91891,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "50",
-            "shapeName": "Омская область",
+            "name": "Омская область",
             "shapeISO": "RU-OMS",
             "shapeID": "28173009B19027137419544",
             "shapeGroup": "RUS",
@@ -91903,7 +91903,7 @@
           "type": "Polygon",
           "properties": {
             "id": "51",
-            "shapeName": "Орловская область",
+            "name": "Орловская область",
             "shapeISO": "RU-ORL",
             "shapeID": "28173009B3932420572168",
             "shapeGroup": "RUS",
@@ -91915,7 +91915,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "52",
-            "shapeName": "город Санкт Петербург",
+            "name": "город Санкт Петербург",
             "shapeISO": "RU-SPE",
             "shapeID": "28173009B38998258297324",
             "shapeGroup": "RUS",
@@ -91967,7 +91967,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "53",
-            "shapeName": "Сахалинская область",
+            "name": "Сахалинская область",
             "shapeISO": "RU-SAK",
             "shapeID": "28173009B68999966349189",
             "shapeGroup": "RUS",
@@ -92587,7 +92587,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "54",
-            "shapeName": "Республика Саха",
+            "name": "Республика Саха",
             "shapeISO": "RU-SA",
             "shapeID": "28173009B31854180707933",
             "shapeGroup": "RUS",
@@ -92599,7 +92599,7 @@
           "type": "Polygon",
           "properties": {
             "id": "55",
-            "shapeName": "Саратовская область",
+            "name": "Саратовская область",
             "shapeISO": "RU-SAR",
             "shapeID": "28173009B21415173479872",
             "shapeGroup": "RUS",
@@ -92611,7 +92611,7 @@
           "type": "Polygon",
           "properties": {
             "id": "56",
-            "shapeName": "Смоленская область",
+            "name": "Смоленская область",
             "shapeISO": "RU-SMO",
             "shapeID": "28173009B31773571872137",
             "shapeGroup": "RUS",
@@ -92623,7 +92623,7 @@
           "type": "Polygon",
           "properties": {
             "id": "57",
-            "shapeName": "Ставропольский край",
+            "name": "Ставропольский край",
             "shapeISO": "RU-STA",
             "shapeID": "28173009B89423349656391",
             "shapeGroup": "RUS",
@@ -92635,7 +92635,7 @@
           "type": "Polygon",
           "properties": {
             "id": "58",
-            "shapeName": "Республика Тыва",
+            "name": "Республика Тыва",
             "shapeISO": "RU-TY",
             "shapeID": "28173009B88007575863293",
             "shapeGroup": "RUS",
@@ -92647,7 +92647,7 @@
           "type": "Polygon",
           "properties": {
             "id": "59",
-            "shapeName": "Тверская область",
+            "name": "Тверская область",
             "shapeISO": "RU-TVE",
             "shapeID": "28173009B63182593849600",
             "shapeGroup": "RUS",
@@ -92659,7 +92659,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "60",
-            "shapeName": "Республика Удмуртия",
+            "name": "Республика Удмуртия",
             "shapeISO": "RU-UD",
             "shapeID": "28173009B34434912986355",
             "shapeGroup": "RUS",
@@ -92671,7 +92671,7 @@
           "type": "Polygon",
           "properties": {
             "id": "61",
-            "shapeName": "Калужская область",
+            "name": "Калужская область",
             "shapeISO": "RU-KLU",
             "shapeID": "28173009B99237675212372",
             "shapeGroup": "RUS",
@@ -92683,7 +92683,7 @@
           "type": "Polygon",
           "properties": {
             "id": "62",
-            "shapeName": "Липецкая область",
+            "name": "Липецкая область",
             "shapeISO": "RU-LIP",
             "shapeID": "28173009B5502896824563",
             "shapeGroup": "RUS",
@@ -92704,7 +92704,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "63",
-            "shapeName": "Магаданская область",
+            "name": "Магаданская область",
             "shapeISO": "RU-MAG",
             "shapeID": "28173009B91964269412698",
             "shapeGroup": "RUS",
@@ -92716,7 +92716,7 @@
           "type": "Polygon",
           "properties": {
             "id": "64",
-            "shapeName": "Ульяновская область",
+            "name": "Ульяновская область",
             "shapeISO": "RU-ULY",
             "shapeID": "28173009B42697300509311",
             "shapeGroup": "RUS",
@@ -92728,7 +92728,7 @@
           "type": "Polygon",
           "properties": {
             "id": "65",
-            "shapeName": "Владимирская область",
+            "name": "Владимирская область",
             "shapeISO": "RU-VLA",
             "shapeID": "28173009B91128253561055",
             "shapeGroup": "RUS",
@@ -92743,7 +92743,7 @@
           "type": "Polygon",
           "properties": {
             "id": "66",
-            "shapeName": "Вологодская область",
+            "name": "Вологодская область",
             "shapeISO": "RU-VLG",
             "shapeID": "28173009B53954125821102",
             "shapeGroup": "RUS",
@@ -92755,7 +92755,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "67",
-            "shapeName": "Ярославская область",
+            "name": "Ярославская область",
             "shapeISO": "RU-YAR",
             "shapeID": "28173009B38848907206629",
             "shapeGroup": "RUS",
@@ -92786,7 +92786,7 @@
           "type": "Polygon",
           "properties": {
             "id": "68",
-            "shapeName": "Воронежская область",
+            "name": "Воронежская область",
             "shapeISO": "RU-VOR",
             "shapeID": "28173009B2687808218031",
             "shapeGroup": "RUS",
@@ -92943,7 +92943,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "69",
-            "shapeName": "Ямало-Ненецкий автономный округ",
+            "name": "Ямало-Ненецкий автономный округ",
             "shapeISO": "RU-YAN",
             "shapeID": "28173009B25956113323300",
             "shapeGroup": "RUS",
@@ -92955,7 +92955,7 @@
           "type": "Polygon",
           "properties": {
             "id": "70",
-            "shapeName": "Республика Алтай",
+            "name": "Республика Алтай",
             "shapeISO": "RU-AL",
             "shapeID": "28173009B77307062422784",
             "shapeGroup": "RUS",
@@ -92967,7 +92967,7 @@
           "type": "Polygon",
           "properties": {
             "id": "71",
-            "shapeName": "Ивановская область",
+            "name": "Ивановская область",
             "shapeISO": "RU-IVA",
             "shapeID": "28173009B41275184158050",
             "shapeGroup": "RUS",
@@ -92979,7 +92979,7 @@
           "type": "Polygon",
           "properties": {
             "id": "72",
-            "shapeName": "Еврейская автономная область",
+            "name": "Еврейская автономная область",
             "shapeISO": "RU-YEV",
             "shapeID": "28173009B51962491984110",
             "shapeGroup": "RUS",
@@ -92995,7 +92995,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "73",
-            "shapeName": "Республика Калмыкия",
+            "name": "Республика Калмыкия",
             "shapeISO": "RU-KL",
             "shapeID": "28173009B30755107671263",
             "shapeGroup": "RUS",
@@ -93025,7 +93025,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "74",
-            "shapeName": "Камчатский край",
+            "name": "Камчатский край",
             "shapeISO": "RU-KAM",
             "shapeID": "28173009B42530053729206",
             "shapeGroup": "RUS",
@@ -93037,7 +93037,7 @@
           "type": "Polygon",
           "properties": {
             "id": "75",
-            "shapeName": "Карачаево-Черкесская республика",
+            "name": "Карачаево-Черкесская республика",
             "shapeISO": "RU-KC",
             "shapeID": "28173009B95588705134862",
             "shapeGroup": "RUS",
@@ -93049,7 +93049,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "76",
-            "shapeName": "Кемеровская область",
+            "name": "Кемеровская область",
             "shapeISO": "RU-KEM",
             "shapeID": "28173009B10628199677018",
             "shapeGroup": "RUS",
@@ -93081,7 +93081,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "77",
-            "shapeName": "Хабаровский край",
+            "name": "Хабаровский край",
             "shapeISO": "RU-KHA",
             "shapeID": "28173009B43740589755605",
             "shapeGroup": "RUS",
@@ -93128,7 +93128,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "78",
-            "shapeName": "Чукотский автономный округ",
+            "name": "Чукотский автономный округ",
             "shapeISO": "RU-CHU",
             "shapeID": "28173009B71378385007039",
             "shapeGroup": "RUS",
@@ -93146,7 +93146,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "79",
-            "shapeName": "Республика Дагестан",
+            "name": "Республика Дагестан",
             "shapeISO": "RU-DA",
             "shapeID": "28173009B24428243574749",
             "shapeGroup": "RUS",
@@ -93158,7 +93158,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "80",
-            "shapeName": "Калиниградская область",
+            "name": "Калиниградская область",
             "shapeISO": "RU-KGD",
             "shapeID": "28173009B62924612217295",
             "shapeGroup": "RUS",
@@ -93170,7 +93170,7 @@
           "type": "Polygon",
           "properties": {
             "id": "81",
-            "shapeName": "Оренбургская область",
+            "name": "Оренбургская область",
             "shapeISO": "RU-ORE",
             "shapeID": "28173009B76603557910928",
             "shapeGroup": "RUS",
@@ -93200,7 +93200,7 @@
           "type": "MultiPolygon",
           "properties": {
             "id": "82",
-            "shapeName": "Приморский край",
+            "name": "Приморский край",
             "shapeISO": "RU-PRI",
             "shapeID": "28173009B49983405071071",
             "shapeGroup": "RUS",
@@ -93212,7 +93212,7 @@
           "type": "Polygon",
           "properties": {
             "id": "83",
-            "shapeName": "Республика Башкортостан",
+            "name": "Республика Башкортостан",
             "shapeISO": "RU-BA",
             "shapeID": "28173009B30250450380208",
             "shapeGroup": "RUS",
@@ -93357,7 +93357,7 @@
           "type": "Polygon",
           "properties": {
             "id": "84",
-            "shapeName": "Луганская Народная республика",
+            "name": "Луганская Народная республика",
             "shapeISO": null,
             "shapeID": null,
             "shapeGroup": null,
@@ -93467,7 +93467,7 @@
           "type": "Polygon",
           "properties": {
             "id": "85",
-            "shapeName": "Донецкая Народная республика",
+            "name": "Донецкая Народная республика",
             "shapeISO": null,
             "shapeID": null,
             "shapeGroup": null,
@@ -93541,7 +93541,7 @@
           "type": "Polygon",
           "properties": {
             "id": "86",
-            "shapeName": "Запорожская область",
+            "name": "Запорожская область",
             "shapeISO": null,
             "shapeID": null,
             "shapeGroup": null,
@@ -93589,7 +93589,7 @@
           "type": "Polygon",
           "properties": {
             "id": "87",
-            "shapeName": "Херсонская область",
+            "name": "Херсонская область",
             "shapeISO": null,
             "shapeID": null,
             "shapeGroup": null,
@@ -93618,7 +93618,7 @@
           "type": "Polygon",
           "properties": {
             "id": "88",
-            "shapeName": "город Севастополь",
+            "name": "город Севастополь",
             "shapeISO": null,
             "shapeID": null,
             "shapeGroup": null,
@@ -93649,7 +93649,7 @@
           "type": "Polygon",
           "properties": {
             "id": "89",
-            "shapeName": "Республика Крым",
+            "name": "Республика Крым",
             "shapeISO": null,
             "shapeID": null,
             "shapeGroup": null,
