@@ -6,6 +6,7 @@ import React, {
   ReactNode,
 } from "react";
 import * as d3 from "d3";
+import * as d3Geo from "d3-geo";
 import * as topojson from "topojson-client";
 import { GeometryCollection, Topology } from "topojson-specification";
 import { Feature, Geometry } from "geojson";
@@ -51,39 +52,24 @@ export interface BubbleMapConfigProps {
   width: number;
   height: number;
   data: RussiaMapData;
-  countLabel?: string;
-  countPostfix?: string;
-  percentLabel?: string;
-  customTooltip?(params: TooltipProps): ReactNode;
 }
 
 const MapComponent: React.FC<BubbleMapConfigProps> = ({
   width,
   height,
   data,
-  countLabel = "인원",
-  countPostfix = "명",
-  percentLabel = "비율",
-  customTooltip,
 }: BubbleMapConfigProps) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
+
+  const [mapScale, setScale] = useState<number>(300);
 
   const zoomStep = useRef<number>(0);
 
   const [plusBtnDisabled, setPlusBtnDisabled] = useState<boolean>(false);
   const [minusBtnDisabled, setMinusBtnDisabled] = useState<boolean>(true);
 
-  const [name, setName] = useState<string>("");
-  const [count, setCount] = useState<number>(null);
-  const [percent, setPercent] = useState<number>(null);
-
   const draw = async () => {
-    // const svg = d3
-    //   .select(".react-russia-bubble-map")
-    //   .select("svg") as d3.Selection<SVGSVGElement, unknown, HTMLElement, any>;
     console.log("DRAW MAP");
-
-    // if (!svgRef.current) return;
 
     const svg = d3.select(svgRef.current);
 
@@ -91,15 +77,13 @@ const MapComponent: React.FC<BubbleMapConfigProps> = ({
 
     const g = svg.append("g");
 
-    // const { sidoGeometry } = await convertTopojsonToGeoData();
-    const russiaMap = topojson.feature(
-      koreaSidoMap,
-      koreaSidoMap.objects["map"] as GeometryCollection<GeometryProperties>
-    );
+    const russiaMap = convertTopojsonToGeoData(koreaSidoMap as any);
 
     const sidoGeometry = russiaMap.features;
 
-    const path = createPath(sidoGeometry);
+    const projection = createProjection(sidoGeometry);
+
+    const path: d3.GeoPath = createPath(projection);
 
     const sidoMap = createMap({
       g,
@@ -110,6 +94,11 @@ const MapComponent: React.FC<BubbleMapConfigProps> = ({
         stroke: "#fff",
         "stroke-width": "0.5px",
       },
+    });
+
+    sidoMap.on("click", (event, d) => {
+      console.log(d);
+      sidoMap.duration(1000);
     });
 
     const sidoData = calculateBubbleSize(data.data);
@@ -131,35 +120,30 @@ const MapComponent: React.FC<BubbleMapConfigProps> = ({
 
     svg.call(zoom);
 
+    svg.attr("width", width).attr("height", height);
+    svg
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("preserveAspectRatio", "xMidYMid meet");
+
+    window.addEventListener("resize", draw);
+
     addZoomEventToButton(svg, zoom);
+    return () => window.removeEventListener("resize", draw);
   };
 
-  async function convertTopojsonToGeoData() {
-    const koreaSidoMap = await importTopoJsonLazy();
-
-    const sidoGeometry = topojson.feature(
-      koreaSidoMap,
-      koreaSidoMap.objects["map"] as GeometryCollection<GeometryProperties>
+  function convertTopojsonToGeoData(topojsonMap: any) {
+    const mapGeometry = topojson.feature(
+      topojsonMap,
+      topojsonMap.objects["map"] as GeometryCollection<GeometryProperties>
     );
 
-    return {
-      sidoGeometry: sidoGeometry.features,
-    };
+    return mapGeometry;
   }
 
-  async function importTopoJsonLazy() {
-    const russiaMap = fetch("/map12.json")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        return data as unknown;
-      }) as Promise<Topology>;
-
-    return await russiaMap;
-  }
-
-  function createPath(geometry: Feature<Geometry, GeometryProperties>[]) {
-    const projection = d3
+  const createProjection = (
+    geometry: Feature<Geometry, GeometryProperties>[]
+  ): d3.GeoProjection => {
+    const projection = d3Geo
       .geoMercator()
       .fitSize([width, height], {
         type: "FeatureCollection",
@@ -167,8 +151,13 @@ const MapComponent: React.FC<BubbleMapConfigProps> = ({
       })
       .rotate([-180, 0])
       .center([-80, 0])
-      .precision(0.3);
-    return d3.geoPath().projection(projection);
+      .scale(mapScale);
+
+    return projection;
+  };
+
+  function createPath(projection: d3.GeoProjection): d3.GeoPath {
+    return d3Geo.geoPath().projection(projection);
   }
 
   function createMap({
@@ -185,9 +174,9 @@ const MapComponent: React.FC<BubbleMapConfigProps> = ({
     attrs: Record<string, string>;
   }) {
     const map = g
-      .append("g")
-      .attr("class", className)
       .selectAll("path")
+      // .append("g")
+      // .attr("class", className)
       .data(data)
       .enter()
       .append("path")
@@ -236,13 +225,11 @@ const MapComponent: React.FC<BubbleMapConfigProps> = ({
     path: d3.GeoPath<any, d3.GeoPermissibleObjects>;
     isSidoBubble?: boolean;
   }) {
-    console.log("CREATE BUBBLES");
     const totalCount = data
       .map((d) => d.count)
       .reduce((prev, cur) => prev + cur, 0);
 
     const bubbles = svg.selectAll("bubbles").data(data).enter().append("g");
-    // .append("g");
 
     if (!isSidoBubble) {
       bubbles.style("display", "none");
@@ -250,7 +237,7 @@ const MapComponent: React.FC<BubbleMapConfigProps> = ({
 
     // bubbles
     //   .append("circle")
-    //   .attr("class", "react-russia-bubble-map__pulse")
+    //   .attr("class", "russia-regions-map__pulse")
     //   .attr("origin-r", (d) => d.size)
     //   .attr("r", (d) => d.size)
     //   .attr("stroke", "#253FEB")
@@ -317,12 +304,12 @@ const MapComponent: React.FC<BubbleMapConfigProps> = ({
 
   function handleBubleMouseOut() {
     this.setAttribute("fill-opacity", "0.3");
-    const tooltip = d3.select(".react-russia-bubble-map__tooltip");
+    const tooltip = d3.select(".russia-regions-map__tooltip");
     tooltip.style("opacity", 0);
   }
 
   function updateTooltipPosition(pageX: number, pageY: number) {
-    const tooltip = d3.select(".react-russia-bubble-map__tooltip");
+    const tooltip = d3.select(".russia-regions-map__tooltip");
     const [tooltipWidth] = tooltip.style("width").split("px");
     const width = Number(tooltipWidth);
 
@@ -421,67 +408,34 @@ const MapComponent: React.FC<BubbleMapConfigProps> = ({
     svg: d3.Selection<SVGSVGElement, unknown, HTMLElement, any>,
     zoom: d3.ZoomBehavior<Element, unknown>
   ) {
-    d3.select(".react-russia-buble-map__zoom-in").on("click", function () {
+    d3.select(".russia-bubble-map__zoom-in").on("click", function () {
       const inNum = zoomStep.current === 0 ? 15 : 80;
       zoom.scaleTo(svg.transition().duration(200), inNum);
     });
-    d3.select(".react-russia-buble-map__zoom-out").on("click", function () {
+    d3.select(".russia-bubble-map__zoom-out").on("click", function () {
       const outNum = zoomStep.current === 2 ? 15 : 1;
       zoom.scaleTo(svg.transition().duration(200), outNum);
     });
   }
 
-  function renderTooltip() {
-    if (customTooltip) {
-      return customTooltip({
-        name,
-        count,
-        percent,
-      });
-    }
-
-    return (
-      <>
-        <strong>{name}</strong>
-        <div>
-          <span>{countLabel}</span>
-          <span>
-            {count}
-            {countPostfix}
-          </span>
-        </div>
-        <div>
-          <span>{percentLabel}</span>
-          <span>{percent}%</span>
-        </div>
-      </>
-    );
-  }
-
-  function renderZoomButton() {
+  const renderZoomButton = () => {
     return (
       <div className="btn-area visible">
-        <Button className="react-russia-buble-map__zoom-in" icon="pi pi-plus" />
+        <Button className="russia-bubble-map__zoom-in" icon="pi pi-plus" />
 
-        <Button
-          className="react-russia-buble-map__zoom-out"
-          icon="pi pi-minus"
-        />
+        <Button className="russia-bubble-map__zoom-out" icon="pi pi-minus" />
       </div>
     );
-  }
+  };
 
   useEffect(() => {
-    draw().catch((error) => {
-      console.error(error);
-    });
+    draw();
   }, []);
 
   return (
-    <div className="react-russia-bubble-map" style={{ width, height }}>
+    <div className="russia-regions-map" style={{ width, height }}>
       <svg ref={svgRef} width={width} height={height} />
-      <div className="react-russia-bubble-map__tooltip">{renderTooltip()}</div>
-      {renderZoomButton()}
+      <div className="russia-regions-map-zoom-btn">{renderZoomButton()}</div>
     </div>
   );
 };

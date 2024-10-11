@@ -14,11 +14,7 @@ interface MainLayoutProps {
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   const isLoad: boolean = useSelector((state: RootState) => state.app.isLoad);
   const [sidebarVisible, setVisible] = useState(false);
-  const dispatch = useDispatch();
 
-  const handleLoadBtn = () => {
-    dispatch(setLoading(!isLoad));
-  };
   return (
     <div>
       <Topbar onClickAvatar={() => setVisible(!sidebarVisible)} />
@@ -27,9 +23,6 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         setVisible={setVisible}
         appendTo={document.getElementById("topbar-mainlayout") as HTMLElement}
       />
-      {isLoad ? <ProgressSpinner /> : null}
-
-      <Button onClick={handleLoadBtn}>stop loading</Button>
       {children}
     </div>
   );
