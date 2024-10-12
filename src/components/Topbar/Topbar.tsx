@@ -15,11 +15,7 @@ const Topbar: React.FC<TopbarProps> = ({ onClickAvatar }) => {
     </div>
   );
   return (
-    <div
-      id="topbar-mainlayout"
-      style={{ position: "relative" }}
-      className="flex flex-column"
-    >
+    <div id="topbar-mainlayout " className="pr-3 w-full fixed mt-1">
       <Menubar className="border-round-2xl shadow-2" end={end} />
     </div>
   );

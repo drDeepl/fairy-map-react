@@ -49,21 +49,22 @@ export interface RussiaMapData {
 }
 
 export interface BubbleMapConfigProps {
-  width: number;
-  height: number;
   data: RussiaMapData;
 }
 
 const MapComponent: React.FC<BubbleMapConfigProps> = ({
-  width,
-  height,
   data,
 }: BubbleMapConfigProps) => {
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
   const svgRef = useRef<SVGSVGElement | null>(null);
 
   const [mapScale, setScale] = useState<number>(300);
 
   const zoomStep = useRef<number>(0);
+
+  const [activeRegion, setActiveRegion] = useState<string | null>(null);
 
   const [plusBtnDisabled, setPlusBtnDisabled] = useState<boolean>(false);
   const [minusBtnDisabled, setMinusBtnDisabled] = useState<boolean>(true);
@@ -131,6 +132,14 @@ const MapComponent: React.FC<BubbleMapConfigProps> = ({
     return () => window.removeEventListener("resize", draw);
   };
 
+  const handleMouseEnter = (regionId: string) => {
+    setActiveRegion(regionId);
+  };
+
+  const handleMouseLeave = () => {
+    setActiveRegion(null);
+  };
+
   function convertTopojsonToGeoData(topojsonMap: any) {
     const mapGeometry = topojson.feature(
       topojsonMap,
@@ -152,7 +161,6 @@ const MapComponent: React.FC<BubbleMapConfigProps> = ({
       .rotate([-180, 0])
       .center([-80, 0])
       .scale(mapScale);
-
     return projection;
   };
 
@@ -175,8 +183,6 @@ const MapComponent: React.FC<BubbleMapConfigProps> = ({
   }) {
     const map = g
       .selectAll("path")
-      // .append("g")
-      // .attr("class", className)
       .data(data)
       .enter()
       .append("path")
@@ -268,8 +274,8 @@ const MapComponent: React.FC<BubbleMapConfigProps> = ({
       .style("fill", "#253FEB")
       .attr("fill-opacity", "0.3")
 
-      .on("mouseover", function (event, d) {
-        handleBubbleMouseOver.call(this, event, d, totalCount);
+      .on("mouseover", (event, d) => {
+        handleBubbleMouseOver.call(event, d, totalCount);
       })
       .on("mousemove", handleBubbleMouseMove)
       .on("mouseout", handleBubleMouseOut);
@@ -331,7 +337,6 @@ const MapComponent: React.FC<BubbleMapConfigProps> = ({
   function createZoom({
     g,
     sidoBubbles,
-    sidoMap,
   }: {
     g: d3.Selection<SVGGElement, unknown, HTMLElement, any>;
     sidoBubbles: d3.Selection<SVGGElement, BubbleMapData, SVGGElement, unknown>;
@@ -347,38 +352,7 @@ const MapComponent: React.FC<BubbleMapConfigProps> = ({
       .on("zoom", (event) => {
         const { x, y, k: scale } = event.transform;
         g.attr("transform", event.transform);
-
-        if (scale < 14) {
-          resizeBubbles({ bubbles: sidoBubbles, x, y, scale });
-          setAttributes(sidoMap, {
-            "stroke-opacity": "1",
-            "fill-opacity": "1",
-          });
-
-          sidoBubbles.style("display", "block");
-
-          zoomStep.current = 0;
-          setMinusBtnDisabled(scale === 1);
-        } else if (scale >= 14 && scale < 46) {
-          setAttributes(sidoMap, {
-            "stroke-opacity": "0",
-            "fill-opacity": "0",
-          });
-
-          sidoBubbles.style("display", "none");
-
-          zoomStep.current = 1;
-        } else {
-          setAttributes(sidoMap, {
-            "stroke-opacity": "0",
-            "fill-opacity": "0",
-          });
-
-          sidoBubbles.style("display", "none");
-
-          zoomStep.current = 2;
-          setPlusBtnDisabled(scale === 80);
-        }
+        resizeBubbles({ bubbles: sidoBubbles, x, y, scale });
       });
   }
 
@@ -394,13 +368,17 @@ const MapComponent: React.FC<BubbleMapConfigProps> = ({
     scale: number;
   }) {
     bubbles.attr("transform", `translate(${x}, ${y}) scale(${scale})`);
-    const circles = bubbles.selectAll("circle");
+    const circles = bubbles.selectAll<SVGCircleElement, BubbleMapData>(
+      "circle"
+    );
     circles.each(function () {
-      const self = this as any;
-      const r = self.getAttribute("origin-r");
-      self.setAttribute("r", `${r / scale}`);
-      const strokeWidth = self.getAttribute("origin-stroke-width");
-      self.setAttribute("stroke-width", `${strokeWidth / scale}`);
+      const self = this as SVGCircleElement;
+      const r = parseFloat(self.getAttribute("origin-r") || "0");
+      self.setAttribute("r", (r / scale).toString());
+      const strokeWidth = parseFloat(
+        self.getAttribute("origin-stroke-width") || "0"
+      );
+      self.setAttribute("stroke-width", (strokeWidth / scale).toString());
     });
   }
 
@@ -433,9 +411,8 @@ const MapComponent: React.FC<BubbleMapConfigProps> = ({
   }, []);
 
   return (
-    <div className="russia-regions-map" style={{ width, height }}>
-      <svg ref={svgRef} width={width} height={height} />
-      <div className="russia-regions-map-zoom-btn">{renderZoomButton()}</div>
+    <div className="russia-regions-map">
+      <svg className="w-full h-full" ref={svgRef} width="100%" height="100%" />
     </div>
   );
 };

@@ -48,16 +48,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <Suspense fallback={loading}>
               <Routes>
                 <Route path="/home" element={<HomePage />} />
-                <Route
-                  path="/map"
-                  element={
-                    <MapComponent
-                      data={data}
-                      width={window.innerWidth}
-                      height={window.innerHeight}
-                    />
-                  }
-                />
+                <Route path="/map" element={<MapComponent data={data} />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>
             </Suspense>
