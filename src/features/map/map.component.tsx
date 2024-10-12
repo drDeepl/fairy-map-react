@@ -298,10 +298,6 @@ const MapComponent: React.FC<BubbleMapConfigProps> = ({
     this.setAttribute("fill-opacity", "1");
 
     updateTooltipPosition(event.pageX, event.pageY);
-
-    setName(data.name);
-    setCount(data.count);
-    setPercent(Math.floor((data.count / totalCount) * 100));
   }
 
   function handleBubbleMouseMove(event: any) {
