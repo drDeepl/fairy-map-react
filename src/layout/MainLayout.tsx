@@ -16,14 +16,14 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   const [sidebarVisible, setVisible] = useState(false);
 
   return (
-    <div>
+    <div className="flex justify-content-center">
       <Topbar onClickAvatar={() => setVisible(!sidebarVisible)} />
       <AppSidebar
         visible={sidebarVisible}
         setVisible={setVisible}
         appendTo={document.getElementById("topbar-mainlayout") as HTMLElement}
       />
-      {children}
+      <div className="pt-8">{children}</div>
     </div>
   );
 };

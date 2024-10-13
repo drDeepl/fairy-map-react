@@ -55,8 +55,8 @@ export interface BubbleMapConfigProps {
 const MapComponent: React.FC<BubbleMapConfigProps> = ({
   data,
 }: BubbleMapConfigProps) => {
-  const width = window.innerWidth;
-  const height = window.innerHeight;
+  const [width, setWidth] = useState<number>(+window.innerWidth);
+  const [height, setHeight] = useState<number>(+window.innerHeight);
 
   const svgRef = useRef<SVGSVGElement | null>(null);
 
@@ -71,6 +71,8 @@ const MapComponent: React.FC<BubbleMapConfigProps> = ({
 
   const draw = async () => {
     console.log("DRAW MAP");
+    setHeight(window.innerWidth);
+    setWidth(window.innerWidth);
 
     const svg = d3.select(svgRef.current);
 
