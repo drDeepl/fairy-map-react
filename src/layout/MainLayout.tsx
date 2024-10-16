@@ -18,7 +18,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   const authState: AuthState = useSelector((state: RootState) => state.auth);
 
   return (
-    <div className="flex justify-content-center">
+    <>
       <Topbar
         user={authState.user}
         onClickAvatar={() => setVisible(!sidebarVisible)}
@@ -28,8 +28,10 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         setVisible={setVisible}
         appendTo={document.getElementById("topbar-mainlayout") as HTMLElement}
       />
-      <div className="pt-8">{children}</div>
-    </div>
+      <div className="flex justify-content-center align-items-center raw-gap-5">
+        <div className="main-layout__content">{children}</div>
+      </div>
+    </>
   );
 };
 

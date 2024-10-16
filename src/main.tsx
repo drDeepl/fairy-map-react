@@ -10,6 +10,7 @@ import HomePage from "./pages/home/Home";
 import NotFoundPage from "./pages/NotFoundPage";
 
 import MapComponent from "./features/map/map.component";
+import WelcomePage from "./pages/welcome/welcome.page";
 
 const loading = (
   <div className="pt-3 text-center">
@@ -47,8 +48,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <MainLayout>
             <Suspense fallback={loading}>
               <Routes>
+                <Route path="/" element={<WelcomePage />} />
                 <Route path="/home" element={<HomePage />} />
-                <Route path="/map" element={<MapComponent data={data} />} />
+                <Route path="/map" element={<MapComponent />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>
             </Suspense>

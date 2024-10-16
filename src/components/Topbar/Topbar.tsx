@@ -2,8 +2,7 @@ import React from "react";
 import { Avatar } from "primereact/avatar";
 import { InputText } from "primereact/inputtext";
 import { Menubar } from "primereact/menubar";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store";
+
 import { JwtPayload } from "../../features/auth/authSlice";
 
 interface TopbarProps {
