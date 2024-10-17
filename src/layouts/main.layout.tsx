@@ -7,6 +7,7 @@ import { ProgressSpinner } from "primereact/progressspinner";
 import { Button } from "primereact/button";
 import { setLoading } from "../store/appSlice";
 import { AuthState } from "../features/auth/authSlice";
+import "./layouts.module.scss";
 
 interface MainLayoutProps {
   children?: React.ReactNode;
@@ -19,16 +20,16 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 
   return (
     <>
-      <Topbar
-        user={authState.user}
-        onClickAvatar={() => setVisible(!sidebarVisible)}
-      />
-      <AppSidebar
-        visible={sidebarVisible}
-        setVisible={setVisible}
-        appendTo={document.getElementById("topbar-mainlayout") as HTMLElement}
-      />
-      <div className="flex justify-content-center align-items-center raw-gap-5">
+      <div className="main-layout__container flex justify-content-center">
+        <Topbar
+          user={authState.user}
+          onClickAvatar={() => setVisible(!sidebarVisible)}
+        />
+        <AppSidebar
+          visible={sidebarVisible}
+          setVisible={setVisible}
+          appendTo={document.getElementById("topbar-mainlayout") as HTMLElement}
+        />
         <div className="main-layout__content">{children}</div>
       </div>
     </>

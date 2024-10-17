@@ -13,7 +13,7 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
   appendTo,
 }) => {
   return (
-    <div className="relative top-20">
+    <div className="">
       <Sidebar
         className="border-round-left-xl fadeinright"
         visible={visible}

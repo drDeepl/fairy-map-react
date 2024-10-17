@@ -24,8 +24,8 @@ const Topbar: React.FC<TopbarProps> = ({ onClickAvatar, user }) => {
   );
   return (
     <div
-      id="topbar-mainlayout "
-      className="pl-3 pr-3 opacity-100 w-full fixed mt-1"
+      id="topbar-mainlayout"
+      className="pl-2 pr-2 opacity-100 w-full fixed mt-2"
     >
       <Menubar className="border-round-2xl shadow-2" end={end} />
     </div>
