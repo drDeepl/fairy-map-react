@@ -1,8 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
-import russiaTopojson from "./map12.ethnicgroups.json";
+
 import { feature } from "topojson-client";
+import { presimplify, simplify } from "topojson-simplify";
 import "./map.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store";
+import { fetchMapData } from "./mapSlice";
+
 interface ScreenSize {
   width: number;
   height: number;
@@ -18,14 +23,19 @@ const MapComponent: React.FC = () => {
 
   const divRef = useRef(null);
 
-  const russiaGeojson = feature(
-    russiaTopojson as any,
-    russiaTopojson.objects.map
+  const dispatch = useDispatch<AppDispatch>();
+  const { dataMap, loading, error } = useSelector(
+    (state: RootState) => state.map
   );
 
-  const data = russiaGeojson as d3.ExtendedFeatureCollection;
+  const drawMap = (russiaTopojson: any) => {
+    const presimpifed = presimplify(russiaTopojson);
+    const simplifed = simplify(presimpifed);
 
-  const drawMap = () => {
+    const russiaGeojson = feature(simplifed as any, simplifed.objects.map);
+
+    const data = russiaGeojson as d3.ExtendedFeatureCollection;
+
     d3.select(divRef.current).selectChild().remove();
 
     const svg = d3
@@ -60,9 +70,13 @@ const MapComponent: React.FC = () => {
 
     projection.scale(scale).translate(translate);
 
-    const zoom = d3.zoom().on("zoom", (event) => {
-      map.attr("transform", event.transform);
-    });
+    const zoom = d3
+      .zoom()
+      .scaleExtent([1, 8]) // Задаем минимальное и максимальное значение для зума
+      .on("zoom", (event) => {
+        map.transition().duration(10).attr("transform", event.transform);
+        // Добавляем transition для плавности
+      });
 
     svg.call(zoom);
 
@@ -102,24 +116,31 @@ const MapComponent: React.FC = () => {
     });
   };
   useEffect(() => {
-    drawMap();
+    dispatch(fetchMapData());
+  }, [dispatch]);
 
+  useEffect(() => {
+    drawMap(dataMap);
     const handleResize = () => {
       setScreenSize({
         width: document.documentElement.clientWidth,
         height: document.documentElement.clientHeight,
       });
     };
-
     window.addEventListener("resize", handleResize);
-
     // Очистка события при размонтировании компонента
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  });
 
-  return <div ref={divRef} className="map__container"></div>;
+  if (loading) return <div>loading</div>;
+  if (error) return <div>error</div>;
+  if (dataMap) {
+    console.log(dataMap);
+
+    return <div ref={divRef} className="map__container"></div>;
+  }
 };
 
 export default MapComponent;
