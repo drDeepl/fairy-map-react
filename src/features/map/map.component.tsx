@@ -12,9 +12,10 @@ interface ScreenSize {
 }
 
 const MapComponent: React.FC = () => {
-  const [heroSelect, setHeroSelect] = useState("batman");
-  const [minHero, setMinHero] = useState(null);
-  const [maxHero, setMaxHero] = useState(null);
+  // TODO: REFACTOR
+  // const [heroSelect, setHeroSelect] = useState("batman");
+  // const [minHero, setMinHero] = useState(null);
+  // const [maxHero, setMaxHero] = useState(null);
 
   const [screenSize, setScreenSize] = useState<ScreenSize>({
     mapWidth: document.documentElement.clientWidth,
@@ -25,8 +26,6 @@ const MapComponent: React.FC = () => {
   const { dataMap, loading, error } = useSelector(
     (state: RootState) => state.map
   );
-
-  const mapSvgRef = useRef<SVGSVGElement | null>(null);
 
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -49,13 +48,6 @@ const MapComponent: React.FC = () => {
 
     // Path
     const mapPath = d3.geoPath().projection(mapProjection);
-
-    // SVG
-    // const svg = d3
-    //   .select(mapSvgRef.current)
-    //   .attr("width", screenSize.mapWidth)
-    //   .attr("height", screenSize.mapHeight)
-    //   .attr("fill", "blue");
 
     document.body.style.overflow = "hidden";
 
@@ -97,52 +89,54 @@ const MapComponent: React.FC = () => {
       .style("stroke-width", "0.5")
       .style("fill", "rgb(255,255,225)");
 
-    const getHeroFilePath = () => {
-      return `http:localhost:5173/${heroSelect}.csv`;
-    };
+    // TODO: REFACTOR
 
-    const drawHeroCircles = (mapProjection, g) => {
-      const heroFilePath = getHeroFilePath();
-      g.selectAll("circle").remove();
+    // const getHeroFilePath = () => {
+    //   return `http:localhost:5173/${heroSelect}.csv`;
+    // };
 
-      d3.csv(heroFilePath).then((heroData) => {
-        console.log(heroData);
-        findMinAndMaxHero(heroData);
+    // const drawHeroCircles = (mapProjection, g) => {
+    //   const heroFilePath = getHeroFilePath();
+    //   g.selectAll("circle").remove();
 
-        g.selectAll("circle")
-          .data(heroData)
-          .enter()
-          .append("circle")
-          .attr("cx", (d) => mapProjection([d.lon, d.lat])[0])
-          .attr("cy", (d) => mapProjection([d.lon, d.lat])[1])
-          .attr("r", (d) => calculateRadius(d.metric))
-          .style("fill", "rgb(30,166,191)")
-          .style("opacity", 0.85)
-          .on("mouseover", (event, d) => {
-            tooltipDiv.current.transition().duration(200).style("opacity", 0.9);
-            tooltipDiv.current
-              .text(`${d.place} - ${d.metric}`)
-              .style("left", `${event.pageX}px`)
-              .style("top", `${event.pageY - 28}px`);
-          })
-          .on("mouseout", () => {
-            tooltipDiv.current.transition().duration(500).style("opacity", 0);
-          });
-      });
-    };
+    //   d3.csv(heroFilePath).then((heroData) => {
+    //     console.log(heroData);
+    //     findMinAndMaxHero(heroData);
 
-    drawHeroCircles(mapProjection, g);
+    //     g.selectAll("circle")
+    //       .data(heroData)
+    //       .enter()
+    //       .append("circle")
+    //       .attr("cx", (d) => mapProjection([d.lon, d.lat])[0])
+    //       .attr("cy", (d) => mapProjection([d.lon, d.lat])[1])
+    //       .attr("r", (d) => calculateRadius(d.metric))
+    //       .style("fill", "rgb(30,166,191)")
+    //       .style("opacity", 0.85)
+    //       .on("mouseover", (event, d) => {
+    //         tooltipDiv.current.transition().duration(200).style("opacity", 0.9);
+    //         tooltipDiv.current
+    //           .text(`${d.place} - ${d.metric}`)
+    //           .style("left", `${event.pageX}px`)
+    //           .style("top", `${event.pageY - 28}px`);
+    //       })
+    //       .on("mouseout", () => {
+    //         tooltipDiv.current.transition().duration(500).style("opacity", 0);
+    //       });
+    //   });
+    // };
 
-    const findMinAndMaxHero = (heroData) => {
-      const metrics = heroData.map((d) => +d.metric);
-      setMinHero(Math.min(...metrics));
-      setMaxHero(Math.max(...metrics));
-    };
+    // drawHeroCircles(mapProjection, g);
 
-    const calculateRadius = (metric) => {
-      // Add your calculation logic here
-      return 5; // Placeholder value
-    };
+    // const findMinAndMaxHero = (heroData) => {
+    //   const metrics = heroData.map((d) => +d.metric);
+    //   setMinHero(Math.min(...metrics));
+    //   setMaxHero(Math.max(...metrics));
+    // };
+
+    // const calculateRadius = (metric) => {
+    //   // Add your calculation logic here
+    //   return 5; // Placeholder value
+    // };
   }
 
   useEffect(() => {
