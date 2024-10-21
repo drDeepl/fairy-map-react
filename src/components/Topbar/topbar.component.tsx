@@ -4,6 +4,7 @@ import { InputText } from "primereact/inputtext";
 import { Menubar } from "primereact/menubar";
 
 import { JwtPayload } from "../../features/auth/authSlice";
+import { Button } from "primereact/button";
 
 interface TopbarProps {
   user: JwtPayload | null;
@@ -11,23 +12,26 @@ interface TopbarProps {
 }
 
 const Topbar: React.FC<TopbarProps> = ({ onClickAvatar, user }) => {
-  const end = (
-    <div className="flex align-items-center gap-2">
-      <InputText placeholder="Search" type="text" />
+  return (
+    <div
+      id="topbar-mainlayout"
+      className="flex justify-content-between pl-3 pr-3  w-full fixed mt-3"
+    >
+      <div className="search-panel__container flex justify-content-start">
+        <InputText
+          placeholder="Search"
+          type="text"
+          className="border-1 border-round-3xl max-h-5rem"
+        />
+        <Button icon="pi pi-caret-right opacity-40" className="ml-2" />
+      </div>
+
       <Avatar
         label={user ? user.email.slice(0, 1) : "?"}
         shape="circle"
         size="large"
         onClick={onClickAvatar}
       />
-    </div>
-  );
-  return (
-    <div
-      id="topbar-mainlayout"
-      className="pl-2 pr-2 opacity-100 w-full fixed mt-2"
-    >
-      <Menubar className="border-round-2xl shadow-2" end={end} />
     </div>
   );
 };
