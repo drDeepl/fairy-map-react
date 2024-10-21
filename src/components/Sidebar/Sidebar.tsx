@@ -13,7 +13,7 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
   appendTo,
 }) => {
   return (
-    <div className="relative top-20">
+    <div className="">
       <Sidebar
         className="border-round-left-xl fadeinright"
         visible={visible}
@@ -21,6 +21,7 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
         position="right"
         appendTo={appendTo}
       >
+        {/* TODO: ADD BTN FOR LOGIN SIGNIN IF NOT AUTH */}
         <h2 style={{ fontWeight: "normal" }}>Users Information Here</h2>
       </Sidebar>
     </div>

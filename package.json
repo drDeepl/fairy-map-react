@@ -12,6 +12,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",
     "@testing-library/user-event": "^13.5.0",
+    "@turf/turf": "^7.1.0",
     "axios": "^1.7.7",
     "d3": "^7.9.0",
     "d3-geo": "^3.1.1",
@@ -38,7 +39,8 @@
     "sass-loader": "^16.0.2",
     "styled-components": "^6.1.13",
     "topojson": "^3.0.2",
-    "topojson-client": "^3.1.0"
+    "topojson-client": "^3.1.0",
+    "turf": "^3.0.14"
   },
   "devDependencies": {
     "@types/d3": "^7.4.3",

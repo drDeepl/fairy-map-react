@@ -1,3 +1,9 @@
 @import "primeflex/primeflex.css";
 @import "primeicons/primeicons.css";
 @import "./themes/fairy-light-orange/theme.css";
+@import "../features/map/map.module.scss";
+
+body {
+  margin: 0;
+  padding: 0;
+}

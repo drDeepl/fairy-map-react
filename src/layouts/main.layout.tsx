@@ -6,6 +6,8 @@ import { AppDispatch, RootState } from "../store";
 import { ProgressSpinner } from "primereact/progressspinner";
 import { Button } from "primereact/button";
 import { setLoading } from "../store/appSlice";
+import { AuthState } from "../features/auth/authSlice";
+import "./layouts.module.scss";
 
 interface MainLayoutProps {
   children?: React.ReactNode;
@@ -14,17 +16,23 @@ interface MainLayoutProps {
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   const isLoad: boolean = useSelector((state: RootState) => state.app.isLoad);
   const [sidebarVisible, setVisible] = useState(false);
+  const authState: AuthState = useSelector((state: RootState) => state.auth);
 
   return (
-    <div>
-      <Topbar onClickAvatar={() => setVisible(!sidebarVisible)} />
-      <AppSidebar
-        visible={sidebarVisible}
-        setVisible={setVisible}
-        appendTo={document.getElementById("topbar-mainlayout") as HTMLElement}
-      />
-      {children}
-    </div>
+    <>
+      <div className="main-layout__container flex justify-content-center">
+        <Topbar
+          user={authState.user}
+          onClickAvatar={() => setVisible(!sidebarVisible)}
+        />
+        <AppSidebar
+          visible={sidebarVisible}
+          setVisible={setVisible}
+          appendTo={document.getElementById("topbar-mainlayout") as HTMLElement}
+        />
+        <div className="main-layout__content">{children}</div>
+      </div>
+    </>
   );
 };
 
