@@ -1,15 +1,18 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import russiaTopojson from "./map12.json";
+import * as turf from "@turf/turf";
 
 import { Objects, Topology } from "topojson-specification";
+import { feature } from "topojson-client";
 import axios from "axios";
+import { FeatureCollection } from "geojson";
 
 export interface MapState {
   loading: boolean;
   error: string | null;
   success: boolean;
-  dataMap: Topology<Objects<RegionProperty>>;
+  dataMap: FeatureCollection;
 }
 
 interface RegionProperty {
@@ -50,8 +53,13 @@ const mapSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchMapData.fulfilled, (state, action) => {
+        const geoJson = feature(action.payload, action.payload.objects.map);
+
+        const simplifyOptions = { tolerance: 0.008, highQuality: false };
+
+        const simplifyFeatures = turf.simplify(geoJson, simplifyOptions);
+        state.dataMap = simplifyFeatures.features as FeatureCollection;
         state.loading = false;
-        state.dataMap = action.payload;
       })
       .addCase(fetchMapData.rejected, (state, action) => {
         state.loading = false;

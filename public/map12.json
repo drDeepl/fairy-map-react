@@ -91157,8 +91157,7 @@
             "shapeISO": "RU-AD",
             "shapeID": "28173009B41832925814017",
             "shapeGroup": "RUS",
-            "shapeType": "ADM1",
-            "ethnicGroups": [{"id": "1", "name": "русские"}]
+            "shapeType": "ADM1"
           }
         },
         {

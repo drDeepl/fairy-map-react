@@ -1,130 +1,155 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
-
-import { feature } from "topojson-client";
-import { presimplify, simplify } from "topojson-simplify";
-import "./map.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../store";
-import { fetchMapData } from "./mapSlice";
+import { RootState } from "../../store";
+import { fetchMapData } from "../map/mapSlice";
+import { ProgressSpinner } from "primereact/progressspinner";
+import { FeatureCollection } from "geojson";
 
 interface ScreenSize {
-  width: number;
-  height: number;
+  mapWidth: number;
+  mapHeight: number;
 }
 
 const MapComponent: React.FC = () => {
+  const [heroSelect, setHeroSelect] = useState("batman");
+  const [minHero, setMinHero] = useState(null);
+  const [maxHero, setMaxHero] = useState(null);
+
   const [screenSize, setScreenSize] = useState<ScreenSize>({
-    height: document.documentElement.clientHeight * window.devicePixelRatio,
-    width: document.documentElement.clientWidth * window.devicePixelRatio,
+    mapWidth: document.documentElement.clientWidth,
+    mapHeight: document.documentElement.clientHeight,
   });
 
-  document.documentElement.style.overflow = "hidden";
-
-  const divRef = useRef(null);
-
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch();
   const { dataMap, loading, error } = useSelector(
     (state: RootState) => state.map
   );
 
-  const drawMap = (russiaTopojson: any) => {
-    const presimpifed = presimplify(russiaTopojson);
-    const simplifed = simplify(presimpifed);
+  const mapSvgRef = useRef<SVGSVGElement | null>(null);
 
-    const russiaGeojson = feature(simplifed as any, simplifed.objects.map);
+  const mapContainerRef = useRef<HTMLDivElement | null>(null);
 
-    const data = russiaGeojson as d3.ExtendedFeatureCollection;
+  const tooltipDiv = useRef<HTMLDivElement | null>(null);
 
-    d3.select(divRef.current).selectChild().remove();
-
-    const svg = d3
-      .select(divRef.current)
-      .append("svg")
-      .attr("width", screenSize.width)
-      .attr("height", screenSize.height)
-      .style("background-color", "#82A9FD");
-
-    const map = svg.append("g");
-
-    const projection = d3
-      .geoMercator()
-      .rotate([-180, 0])
-      .scale(1)
-      .translate([0, 0]);
-    const path = d3.geoPath().projection(projection);
-
-    const bounds = path.bounds(data);
-
-    const dx = bounds[1][0] - bounds[0][0];
-    const dy = bounds[1][1] - bounds[0][1];
-    const x = (bounds[0][0] + bounds[1][0]) / 2;
-    const y = (bounds[0][1] + bounds[1][1]) / 2;
-
-    const scale = 1 / Math.max(dx / screenSize.width, dy / screenSize.height);
-
-    const translate: [number, number] = [
-      screenSize.width / 2 - scale * x,
-      screenSize.height / 2 - scale * y,
-    ];
-
-    projection.scale(scale).translate(translate);
-
-    const zoom = d3
-      .zoom()
-      .scaleExtent([1, 8]) // Задаем минимальное и максимальное значение для зума
-      .on("zoom", (event) => {
-        map.transition().duration(10).attr("transform", event.transform);
-        // Добавляем transition для плавности
-      });
-
-    svg.call(zoom);
-
-    const tooltip = d3
-      .select("body")
-      .append("div")
-      .style("position", "absolute")
-      .style("background-color", "white")
-      .style("padding", "5px")
-      .style("border", "1px solid #ccc")
-      .style("border-radius", "4px")
-      .style("pointer-events", "none")
-      .style("opacity", 0);
-
-    data.features.forEach((feature) => {
-      map
-        .append("path")
-        .attr("d", path(feature))
-        .style("fill", "#FFFFFF")
-        .style("stroke", "#82A9FD")
-        .on("mouseover", function () {
-          d3.select(this).style("fill", "red");
-        })
-        .on("mouseout", function () {
-          d3.select(this).style("fill", "#FFFFFF");
-          tooltip.style("opacity", 0);
-        })
-        .on("click", function () {
-          console.log(feature);
-          tooltip.transition().duration(200).style("opacity", 0.9);
-
-          tooltip
-            .html(`${feature.properties.name}`)
-            .style("left", `${event.pageX}px`)
-            .style("top", `${event.pageY - 50}px`); // Смещение вверх для видимости
-        });
-    });
-  };
   useEffect(() => {
     dispatch(fetchMapData());
   }, [dispatch]);
 
+  function drawMap(features: FeatureCollection) {
+    console.log(features);
+    const mapProjection = d3
+      .geoAlbers()
+      .rotate([-105, 0]) //  .rotate([-105,0])
+      .center([-10, 65])
+      .parallels([50, 70]) //.parallels([52, 64])
+      .scale(700)
+      .translate([screenSize.mapWidth / 2, screenSize.mapHeight / 2])
+      .precision(0.1);
+
+    // Path
+    const mapPath = d3.geoPath().projection(mapProjection);
+
+    // SVG
+    // const svg = d3
+    //   .select(mapSvgRef.current)
+    //   .attr("width", screenSize.mapWidth)
+    //   .attr("height", screenSize.mapHeight)
+    //   .attr("fill", "blue");
+
+    document.body.style.overflow = "hidden";
+
+    const svg = d3
+      .select(mapContainerRef.current)
+      .append("svg")
+      .attr("width", screenSize.mapWidth)
+      .attr("height", screenSize.mapHeight)
+      .style("background-color", "#82A9FD");
+
+    svg.selectAll("*").remove();
+
+    const g = svg.append("g");
+
+    tooltipDiv.current = d3
+      .select(mapContainerRef.current)
+      .append("div")
+      .attr("class", "map-tooltip")
+      .style("opacity", 0);
+
+    // Tooltip
+
+    // Zoom
+    svg.call(
+      d3
+        .zoom()
+        .scaleExtent([1 / 2, 5])
+        .on("zoom", (event) => {
+          g.attr("transform", event.transform);
+        })
+    );
+
+    g.selectAll("path")
+      .data(features as any)
+      .enter()
+      .append("path")
+      .attr("d", mapPath)
+      .style("stroke", "#82A9FD")
+      .style("stroke-width", "0.5")
+      .style("fill", "rgb(255,255,225)");
+
+    const getHeroFilePath = () => {
+      return `http:localhost:5173/${heroSelect}.csv`;
+    };
+
+    const drawHeroCircles = (mapProjection, g) => {
+      const heroFilePath = getHeroFilePath();
+      g.selectAll("circle").remove();
+
+      d3.csv(heroFilePath).then((heroData) => {
+        console.log(heroData);
+        findMinAndMaxHero(heroData);
+
+        g.selectAll("circle")
+          .data(heroData)
+          .enter()
+          .append("circle")
+          .attr("cx", (d) => mapProjection([d.lon, d.lat])[0])
+          .attr("cy", (d) => mapProjection([d.lon, d.lat])[1])
+          .attr("r", (d) => calculateRadius(d.metric))
+          .style("fill", "rgb(30,166,191)")
+          .style("opacity", 0.85)
+          .on("mouseover", (event, d) => {
+            tooltipDiv.current.transition().duration(200).style("opacity", 0.9);
+            tooltipDiv.current
+              .text(`${d.place} - ${d.metric}`)
+              .style("left", `${event.pageX}px`)
+              .style("top", `${event.pageY - 28}px`);
+          })
+          .on("mouseout", () => {
+            tooltipDiv.current.transition().duration(500).style("opacity", 0);
+          });
+      });
+    };
+
+    drawHeroCircles(mapProjection, g);
+
+    const findMinAndMaxHero = (heroData) => {
+      const metrics = heroData.map((d) => +d.metric);
+      setMinHero(Math.min(...metrics));
+      setMaxHero(Math.max(...metrics));
+    };
+
+    const calculateRadius = (metric) => {
+      // Add your calculation logic here
+      return 5; // Placeholder value
+    };
+  }
+
   useEffect(() => {
-    drawMap(dataMap);
     const handleResize = () => {
       setScreenSize({
-        width: document.documentElement.clientWidth,
-        height: document.documentElement.clientHeight,
+        mapWidth: document.documentElement.clientWidth,
+        mapHeight: document.documentElement.clientHeight,
       });
     };
     window.addEventListener("resize", handleResize);
@@ -132,14 +157,18 @@ const MapComponent: React.FC = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  });
+  }, [dataMap]);
 
-  if (loading) return <div>loading</div>;
-  if (error) return <div>error</div>;
+  if (loading)
+    return (
+      <div className="flex justify-content-center align-items-center min-h-screen">
+        <ProgressSpinner />
+      </div>
+    );
   if (dataMap) {
     console.log(dataMap);
-
-    return <div ref={divRef} className="map__container"></div>;
+    drawMap(dataMap);
+    return <div ref={mapContainerRef}></div>;
   }
 };
 
