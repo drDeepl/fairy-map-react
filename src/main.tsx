@@ -18,10 +18,14 @@ const loading = (
   </div>
 );
 
+const value = {
+  ripple: true,
+};
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Provider store={store}>
-      <PrimeReactProvider>
+      <PrimeReactProvider value={value}>
         <BrowserRouter>
           <MainLayout>
             <Suspense fallback={loading}>

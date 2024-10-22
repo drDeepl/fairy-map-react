@@ -21,15 +21,17 @@ const Topbar: React.FC<TopbarProps> = ({ onClickAvatar, user }) => {
         <InputText
           placeholder="Search"
           type="text"
-          className="border-1 border-round-3xl max-h-5rem"
+          className="border-1 border-round-3xl max-h-5rem shadow-2"
         />
         <Button icon="pi pi-caret-right opacity-40" className="ml-2" />
       </div>
 
       <Avatar
-        label={user ? user.email.slice(0, 1) : "?"}
-        shape="circle"
+        className="bg-white border-round-xl shadow-2"
+        icon={!user ? "pi pi-user" : ""}
+        label={user ? user.email.slice(0, 1) : ""}
         size="large"
+        style={{ color: "var(--surface-500)" }}
         onClick={onClickAvatar}
       />
     </div>

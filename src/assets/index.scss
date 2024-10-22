@@ -2,6 +2,11 @@
 @import "primeicons/primeicons.css";
 @import "./themes/fairy-light-orange/theme.css";
 @import "../features/map/map.module.scss";
+@import "./buttons.scss";
+:root {
+  --border-radius: 12px;
+  --buttonPadding: 0.25rem 1rem;
+}
 
 body {
   margin: 0;
