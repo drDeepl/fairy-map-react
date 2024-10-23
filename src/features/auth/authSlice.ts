@@ -1,16 +1,27 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 
-interface AuthState {
+export interface JwtPayload {
+  sub: string;
+  email: string;
+}
+
+export interface AuthState {
   loading: boolean;
   error: string | null;
   success: boolean;
+  user: null | JwtPayload;
 }
 
 const initialState: AuthState = {
   loading: false,
   error: null,
   success: false,
+  user: {
+    sub: "2",
+    email: "dasd@gmail.com  ",
+  },
+  // user: null,
 };
 
 interface SignInPayload {
