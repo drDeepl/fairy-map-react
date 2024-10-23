@@ -1,9 +1,5 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-import russiaTopojson from "./map12.json";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import * as turf from "@turf/turf";
-
-import { Objects, Topology } from "topojson-specification";
 import { feature } from "topojson-client";
 import axios from "axios";
 import { FeatureCollection } from "geojson";
@@ -12,23 +8,14 @@ export interface MapState {
   loading: boolean;
   error: string | null;
   success: boolean;
-  dataMap: FeatureCollection;
-}
-
-interface RegionProperty {
-  id: string;
-  name: string;
-  shapeISO: string;
-  shapeID: string;
-  shapeGroup: string;
-  shapeType: string;
+  dataMap: FeatureCollection | null;
 }
 
 const initialState: MapState = {
   loading: false,
   error: null,
   success: false,
-  dataMap: russiaTopojson as any,
+  dataMap: null,
 };
 
 const API_URL = import.meta.env.VITE_API_URL;
