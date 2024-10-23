@@ -11,7 +11,11 @@ interface ScreenSize {
   mapHeight: number;
 }
 
-const MapComponent: React.FC = () => {
+interface MapComponentProps {
+  features: FeatureCollection;
+}
+
+const MapComponent: React.FC<MapComponentProps> = ({ features }) => {
   // TODO: REFACTOR
   // const [heroSelect, setHeroSelect] = useState("batman");
   // const [minHero, setMinHero] = useState(null);
@@ -22,18 +26,9 @@ const MapComponent: React.FC = () => {
     mapHeight: document.documentElement.clientHeight,
   });
 
-  const dispatch = useDispatch();
-  const { dataMap, loading, error } = useSelector(
-    (state: RootState) => state.map
-  );
-
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
 
   const tooltipDiv = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    dispatch(fetchMapData());
-  }, [dispatch]);
 
   function drawMap(features: FeatureCollection) {
     console.log(features);
@@ -140,6 +135,8 @@ const MapComponent: React.FC = () => {
   }
 
   useEffect(() => {
+    drawMap(features);
+
     const handleResize = () => {
       setScreenSize({
         mapWidth: document.documentElement.clientWidth,
@@ -151,19 +148,9 @@ const MapComponent: React.FC = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [dataMap]);
+  }, [features]);
 
-  if (loading)
-    return (
-      <div className="flex justify-content-center align-items-center min-h-screen">
-        <ProgressSpinner />
-      </div>
-    );
-  if (dataMap) {
-    console.log(dataMap);
-    drawMap(dataMap);
-    return <div ref={mapContainerRef}></div>;
-  }
+  return <div ref={mapContainerRef}></div>;
 };
 
 export default MapComponent;
