@@ -21,6 +21,7 @@ const initialState: AuthState = {
     sub: "2",
     email: "dasd@gmail.com  ",
   },
+  // user: null,
 };
 
 interface SignInPayload {

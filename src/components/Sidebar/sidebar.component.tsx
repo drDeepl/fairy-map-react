@@ -1,15 +1,19 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { Sidebar } from "primereact/sidebar";
+import { JwtPayload } from "../../features/auth/authSlice";
+import { Button } from "primereact/button";
 
 interface AppSidebarProps {
   visible: boolean;
   setVisible: Dispatch<SetStateAction<boolean>>;
+  user: JwtPayload | null;
   appendTo?: HTMLElement;
 }
 
 const AppSidebar: React.FC<AppSidebarProps> = ({
   visible,
   setVisible,
+  user,
   appendTo,
 }) => {
   return (
@@ -22,7 +26,6 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
         appendTo={appendTo}
       >
         {/* TODO: ADD BTN FOR LOGIN SIGNIN IF NOT AUTH */}
-        <h2 style={{ fontWeight: "normal" }}>Users Information Here</h2>
       </Sidebar>
     </div>
   );
