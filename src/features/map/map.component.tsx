@@ -1,9 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store";
-import { fetchMapData } from "../map/mapSlice";
-import { ProgressSpinner } from "primereact/progressspinner";
 import { FeatureCollection } from "geojson";
 
 interface ScreenSize {
