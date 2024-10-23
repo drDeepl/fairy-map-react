@@ -9,7 +9,7 @@ import HomePage from "./pages/home/Home";
 import NotFoundPage from "./pages/not-found/not-found.page";
 import WelcomePage from "./pages/welcome/welcome.page";
 import PersonalPage from "./pages/personal-page/perosnal.page";
-import { RoutePage } from "./pages/constants/routes.enum";
+import { RoutePage } from "./pages/constants/route-page";
 import MapPage from "./pages/map/map.page";
 
 const loading = (

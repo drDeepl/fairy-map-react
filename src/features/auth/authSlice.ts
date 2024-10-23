@@ -17,11 +17,7 @@ const initialState: AuthState = {
   loading: false,
   error: null,
   success: false,
-  user: {
-    sub: "2",
-    email: "dasd@gmail.com  ",
-  },
-  // user: null,
+  user: null,
 };
 
 interface SignInPayload {

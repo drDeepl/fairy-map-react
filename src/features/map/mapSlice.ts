@@ -1,8 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import * as turf from "@turf/turf";
 import { feature } from "topojson-client";
-import axios from "axios";
 import { FeatureCollection } from "geojson";
+import instance from "../../api";
+
+const CONTROLLER_NAME = "map";
 
 export interface MapState {
   loading: boolean;
@@ -18,14 +20,8 @@ const initialState: MapState = {
   dataMap: null,
 };
 
-const API_URL = import.meta.env.VITE_API_URL;
-
-axios.defaults.headers.get["Content-Type"] = "application/json";
-axios.defaults.headers.get["Accept"] = "application/json";
-axios.defaults.headers.get["Access-Control-Allow-Origin"] = "*";
-
 export const fetchMapData = createAsyncThunk("map/fetchMapData", async () => {
-  const response = await axios.get(`${API_URL}/map/map.json`);
+  const response = await instance.get(`${CONTROLLER_NAME}/map.json`);
   return response.data;
 });
 

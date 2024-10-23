@@ -6,22 +6,29 @@ import { JwtPayload } from "../../features/auth/authSlice";
 import { Button } from "primereact/button";
 import { OverlayPanel } from "primereact/overlaypanel";
 import { useNavigate } from "react-router-dom";
+import { RoutePage } from "../../pages/constants/route-page";
 
 interface TopbarProps {
   user: JwtPayload | null;
+  onClickLogIn: () => void;
+  onClickSignIn: () => void;
 }
 
-const Topbar: React.FC<TopbarProps> = ({ user }) => {
+const Topbar: React.FC<TopbarProps> = ({
+  user,
+  onClickLogIn,
+  onClickSignIn,
+}) => {
   const authPanel = useRef(null);
   const navigate = useNavigate();
 
   function handleOnClicknPersonalPage() {
-    navigate("/me");
+    navigate(RoutePage.Personal);
   }
   const authActions = (
     <div className="flex align-items-center gap-2">
-      <Button label="войти"></Button>
-      <Button label="зарегистрироваться" text></Button>
+      <Button label="войти" onClick={onClickLogIn}></Button>
+      <Button label="зарегистрироваться" text onClick={onClickSignIn}></Button>
     </div>
   );
 
