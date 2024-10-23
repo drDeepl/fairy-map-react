@@ -6,18 +6,30 @@ import Topbar from "../../components/topbar/topbar.component";
 import { ProgressSpinner } from "primereact/progressspinner";
 import { fetchMapData } from "../../features/map/mapSlice";
 import { AuthState } from "../../features/auth/authSlice";
+import { Dialog } from "primereact/dialog";
+import OverlayForm from "../../components/topbar/overlay-form/overlay-form.component";
+
+const testFormFields = [
+  { label: "Имя пользователя", value: "" },
+  { label: "пароль", value: "" },
+];
 
 const MapPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
+
   const { dataMap, loading, error } = useSelector(
     (state: RootState) => state.map
   );
 
+  const [authFormVisible, setAuthFormVisible] = useState<boolean>(false);
+
   const handleClickSignIn = () => {
+    setAuthFormVisible(true);
     console.log("click sign in");
   };
 
   const handleClickLogIn = () => {
+    setAuthFormVisible(true);
     console.log("click log in");
   };
 
