@@ -13,17 +13,17 @@ export interface AuthState {
   user: null | JwtPayload;
 }
 
+interface SignInPayload {
+  email: string;
+  password: string;
+}
+
 const initialState: AuthState = {
   loading: false,
   error: null,
   success: false,
   user: null,
 };
-
-interface SignInPayload {
-  email: string;
-  password: string;
-}
 
 export const signIn = createAsyncThunk(
   "user/signin",

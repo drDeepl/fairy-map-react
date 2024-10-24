@@ -4,8 +4,6 @@ import { feature } from "topojson-client";
 import { FeatureCollection } from "geojson";
 import { MapControllerService } from "../../api";
 
-const CONTROLLER_NAME = "map";
-
 export interface MapState {
   loading: boolean;
   error: string | null;

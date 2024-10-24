@@ -6,13 +6,8 @@ import Topbar from "../../components/topbar/topbar.component";
 import { ProgressSpinner } from "primereact/progressspinner";
 import { fetchMapData } from "../../features/map/mapSlice";
 import { AuthState } from "../../features/auth/authSlice";
-import { Dialog } from "primereact/dialog";
-import OverlayForm from "../../components/topbar/overlay-form/overlay-form.component";
-
-const testFormFields = [
-  { label: "Имя пользователя", value: "" },
-  { label: "пароль", value: "" },
-];
+import AuthForm from "../../features/auth/auth.form";
+import SignInModel from "../../features/auth/model/sign-in.model";
 
 const MapPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -61,6 +56,17 @@ const MapPage: React.FC = () => {
       <div className="map-pag__content">
         {dataMap ? <MapComponent features={dataMap} /> : ""}
       </div>
+      <AuthForm
+        title="Вход"
+        dataModel={new SignInModel()}
+        visible={authFormVisible}
+        onSubmit={() => {
+          console.log("on submit ");
+        }}
+        onCancel={() => {
+          console.log("on cancel");
+        }}
+      />
     </div>
   );
 };
