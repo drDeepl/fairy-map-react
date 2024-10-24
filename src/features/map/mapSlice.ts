@@ -2,9 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import * as turf from "@turf/turf";
 import { feature } from "topojson-client";
 import { FeatureCollection } from "geojson";
-import instance from "../../api";
-
-const CONTROLLER_NAME = "map";
+import { MapControllerService } from "../../api/services/MapControllerService";
 
 export interface MapState {
   loading: boolean;
@@ -21,8 +19,9 @@ const initialState: MapState = {
 };
 
 export const fetchMapData = createAsyncThunk("map/fetchMapData", async () => {
-  const response = await instance.get(`${CONTROLLER_NAME}/map.json`);
-  return response.data;
+  const response = await MapControllerService.mapControllerGetMapTopojson();
+  console.log(response);
+  return response;
 });
 
 const mapSlice = createSlice({
