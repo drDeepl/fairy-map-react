@@ -1,15 +1,72 @@
-import axios from "axios";
+/* generated using openapi-typescript-codegen -- do not edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export { ApiError } from './core/ApiError';
+export { CancelablePromise, CancelError } from './core/CancelablePromise';
+export { OpenAPI } from './core/OpenAPI';
+export type { OpenAPIConfig } from './core/OpenAPI';
 
-const API_URL = import.meta.env.VITE_API_URL;
+export type { AddAudioStoryDto } from './models/AddAudioStoryDto';
+export type { AddAudioStoryRequestDto } from './models/AddAudioStoryRequestDto';
+export type { AddConstituentDto } from './models/AddConstituentDto';
+export type { AddEthnicGroupDto } from './models/AddEthnicGroupDto';
+export type { AddEthnicGroupMapDto } from './models/AddEthnicGroupMapDto';
+export type { AddEthnicGroupToConstituentDto } from './models/AddEthnicGroupToConstituentDto';
+export type { AddLanguageDto } from './models/AddLanguageDto';
+export type { AddRatingAudioStoryDto } from './models/AddRatingAudioStoryDto';
+export type { AddStoryDto } from './models/AddStoryDto';
+export { AddStoryRequestDto } from './models/AddStoryRequestDto';
+export type { AddStoryRequestEntity } from './models/AddStoryRequestEntity';
+export type { AddTextStoryDto } from './models/AddTextStoryDto';
+export type { AddTypeRequestDto } from './models/AddTypeRequestDto';
+export type { ApprovedUserAudioDto } from './models/ApprovedUserAudioDto';
+export type { AudioStoryLanguageDto } from './models/AudioStoryLanguageDto';
+export type { AudioStoryRequestEntity } from './models/AudioStoryRequestEntity';
+export type { AuthorUserDto } from './models/AuthorUserDto';
+export type { BadRequestDto } from './models/BadRequestDto';
+export type { BaseRequestExceptionDto } from './models/BaseRequestExceptionDto';
+export type { BaseUserAudioDto } from './models/BaseUserAudioDto';
+export type { Buffer } from './models/Buffer';
+export type { ConstituentDto } from './models/ConstituentDto';
+export type { ConstituentFilledDto } from './models/ConstituentFilledDto';
+export type { CreateAddStoryRequestDto } from './models/CreateAddStoryRequestDto';
+export type { CreatedImageStoryDto } from './models/CreatedImageStoryDto';
+export type { DeleteEthnicGroupToConstituentDto } from './models/DeleteEthnicGroupToConstituentDto';
+export { EditAddStoryRequestDto } from './models/EditAddStoryRequestDto';
+export type { EditAudioStoryRequestDto } from './models/EditAudioStoryRequestDto';
+export type { EditConstituentDto } from './models/EditConstituentDto';
+export type { EditEthnicGroupDto } from './models/EditEthnicGroupDto';
+export type { EditStoryDto } from './models/EditStoryDto';
+export type { EditTypeRequestDto } from './models/EditTypeRequestDto';
+export type { EthnicGroupDto } from './models/EthnicGroupDto';
+export type { EthnicGroupLanguageDto } from './models/EthnicGroupLanguageDto';
+export type { EthnicGroupMapDto } from './models/EthnicGroupMapDto';
+export type { EthnicGroupMapPointEntity } from './models/EthnicGroupMapPointEntity';
+export type { EthnicGroupMapPointEntityWithConstituents } from './models/EthnicGroupMapPointEntityWithConstituents';
+export type { EthnicGroupMapWithGroupDto } from './models/EthnicGroupMapWithGroupDto';
+export type { EthnicGroupToConstituentDto } from './models/EthnicGroupToConstituentDto';
+export type { ImageStoryDto } from './models/ImageStoryDto';
+export type { LanguageDto } from './models/LanguageDto';
+export type { RatingAudioStoryDto } from './models/RatingAudioStoryDto';
+export type { SignInRequestDto } from './models/SignInRequestDto';
+export type { SignUpRequestDto } from './models/SignUpRequestDto';
+export type { StoryDto } from './models/StoryDto';
+export type { StreamableFile } from './models/StreamableFile';
+export type { TextStoryDto } from './models/TextStoryDto';
+export type { TokensResponseDto } from './models/TokensResponseDto';
+export type { TypeRequestDto } from './models/TypeRequestDto';
+export type { UserAudioDto } from './models/UserAudioDto';
+export type { UserResponseDto } from './models/UserResponseDto';
+export type { ValidationExceptionResponseDto } from './models/ValidationExceptionResponseDto';
 
-const instance = axios.create({
-  baseURL: API_URL,
-  timeout: 5000,
-  headers: {
-    "Content-Type": "application/json",
-    Accept: "application/json",
-    "Access-Control-Allow-Origin": "*",
-  },
-});
-
-export default instance;
+export { AddStoryRequestControllerService } from './services/AddStoryRequestControllerService';
+export { AudioStoryRequestControllerService } from './services/AudioStoryRequestControllerService';
+export { AuthControllerService } from './services/AuthControllerService';
+export { ConstituentControllerService } from './services/ConstituentControllerService';
+export { EthnicGroupControllerService } from './services/EthnicGroupControllerService';
+export { MapControllerService } from './services/MapControllerService';
+export { RequestControllerService } from './services/RequestControllerService';
+export { StoryControllerService } from './services/StoryControllerService';
+export { UserAudioControllerService } from './services/UserAudioControllerService';
+export { UserControllerService } from './services/UserControllerService';
